@@ -2,30 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Download Certificate</title>
+  <title>Local Network Services</title>
   <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 50px;
+    body { font-family: sans-serif; padding: 2rem; background: #f8f9fa; }
+    h1 { color: #333; }
+    .btn {
+      background: #007bff; color: white; padding: 10px 15px;
+      text-decoration: none; border-radius: 5px;
+      display: inline-block; margin-bottom: 20px;
     }
-    a.button {
-      display: inline-block;
-      padding: 12px 24px;
-      font-size: 16px;
-      color: white;
-      background-color: #007bff;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-    a.button:hover {
-      background-color: #0056b3;
-    }
+    ul { padding-left: 1rem; }
+    li { margin-bottom: 10px; }
+    a.link { color: #0056b3; text-decoration: none; }
+    a.link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <h1>Download SSL Certificate</h1>
-  <p>Click the button below to download the trusted certificate:</p>
-  <a href="/self.crt" class="button" download>Download Certificate</a>
+  <h1>📡 Local Services</h1>
+  <a href="/self.crt" class="btn" download>⬇️ Download Certificate</a>
+  <h2>🌐 Services</h2>
+  <ul id="services-list">Loading services...</ul>
+
+  <script>
+    fetch('/domains.txt')
+      .then(response => response.text())
+      .then(data => {
+        const list = document.getElementById('services-list');
+        list.innerHTML = ''; // Clear placeholder
+        data.split('\n').forEach(line => {
+          const [domain, port] = line.trim().split(/\s+/);
+          if (domain && port) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = `https://${domain}:${port}`;
+            a.textContent = `${domain}:${port}`;
+            a.className = 'link';
+            li.appendChild(a);
+            list.appendChild(li);
+          }
+        });
+      })
+      .catch(err => {
+        document.getElementById('services-list').textContent = 'Failed to load services.';
+        console.error(err);
+      });
+  </script>
 </body>
 </html>
