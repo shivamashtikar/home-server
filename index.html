@@ -4,13 +4,24 @@
   <meta charset="UTF-8">
   <title>Local Network Services</title>
   <style>
-    body { font-family: sans-serif; padding: 2rem; background: #f8f9fa; }
-    h1 { color: #333; }
-    .btn {
-      background: #007bff; color: white; padding: 10px 15px;
-      text-decoration: none; border-radius: 5px;
-      display: inline-block; margin-bottom: 20px;
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
     }
+    a.btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 16px;
+      color: white;
+      background-color: #007bff;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+    a.button:hover {
+      background-color: #0056b3;
+    }
+    h1 { color: #333; }
     ul { padding-left: 1rem; }
     li { margin-bottom: 10px; }
     a.link { color: #0056b3; text-decoration: none; }
@@ -31,11 +42,11 @@
         list.innerHTML = ''; // Clear placeholder
         data.split('\n').forEach(line => {
           const [domain, port] = line.trim().split(/\s+/);
-          if (domain && port) {
+          if (domain) {
             const li = document.createElement('li');
             const a = document.createElement('a');
-            a.href = `https://${domain}:${port}`;
-            a.textContent = `${domain}:${port}`;
+            a.href = `https://${domain}`;
+            a.textContent = `https://${domain}`;
             a.className = 'link';
             li.appendChild(a);
             list.appendChild(li);
