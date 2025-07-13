@@ -1,1 +1,6 @@
 home.lan 9000
+vault.lan 7000
+jelly.lan 8096
+file.lan 9092
+trans.lan 9091
+llm.lan 3000
