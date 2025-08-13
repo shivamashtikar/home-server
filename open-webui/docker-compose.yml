@@ -1,0 +1,23 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "4000:8080"
+    volumes:
+      - ${HOME}/.data/open-webui:/app/backend/data
+    environment:
+      # Optional: Connect to Ollama or other models
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
+
+      # Enable encryption for chats
+      ENABLE_ADMIN_CHAT_ACCESS: "false"
+      # (Check documentation for any other encryption-related options—they may be enabled by default)
+      DATABASE_TYPE: "sqlite+sqlcipher"
+      DATABASE_PASSWORD: ${OPEN_WEBUI_DATABASE_PASSWORD}
+
+    restart: unless-stopped
+
+volumes:
+  open-webui-data:
+    # Docker-managed named volume for persistence
