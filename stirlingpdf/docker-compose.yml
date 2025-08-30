@@ -3,7 +3,7 @@ services:
   stirling-pdf:
     image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
     ports:
-      - '8080:8080'
+      - '9093:8080'
     volumes:
       - ../data/StirlingPDF/trainingData:/usr/share/tessdata # Required for extra OCR languages
       - ../data/StirlingPDF/extraConfigs:/configs
