@@ -6,3 +6,4 @@ trans.lan 9091
 llm.lan 3000
 pdf.lan 9093
 link.lan 7001
+docs.lan 7002
