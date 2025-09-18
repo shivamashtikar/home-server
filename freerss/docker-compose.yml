@@ -13,6 +13,9 @@ services:
     container_name: freshrss
     hostname: freshrss
     restart: unless-stopped
+    env_file:
+      - path: .env
+    required: true
     ports:
       - 7005:80
     logging:
