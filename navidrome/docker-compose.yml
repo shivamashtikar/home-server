@@ -9,5 +9,5 @@ services:
       # Optional: put your config options customization here. Examples:
       # ND_LOGLEVEL: debug
     volumes:
-      - "../data:/data"
+      - "../data/navidrome:/data"
       - "$HOME/music:/music:ro"
