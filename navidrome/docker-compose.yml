@@ -1,11 +1,13 @@
 services:
   navidrome:
     image: deluan/navidrome:latest
-    user: 1000:1000 # should be owner of volumes
+    # user: 1000:1000 # should be owner of volumes
     ports:
       - "7006:4533"
     restart: unless-stopped
-    # environment:
+    environment:
+      ND_ENABLEINSIGHTSCOLLECTOR: false
+
       # Optional: put your config options customization here. Examples:
       # ND_LOGLEVEL: debug
     volumes:
